@@ -31,4 +31,28 @@ public class BoardServiceImpl extends EgovAbstractServiceImpl implements BoardSe
 	
 	}
 
+	//게시물 등록
+	public String insertBoard(BoardVO vo) throws Exception{
+		String id = idgenService.getNextStringId();
+		vo.setBoardId(id);
+		boardMapper.insertBoard(vo);
+		return id;
+	}
+	//게시물 상세정보
+	public BoardVO selectBoard(BoardVO vo) throws Exception{
+		//조회수 업
+		boardMapper.updateViewCnt(vo);
+		return boardMapper.selectBoard(vo);
+	}
+	
+	//게시물 수정하기
+	public void updateBoard(BoardVO vo) throws Exception{
+		boardMapper.updateBoard(vo);
+	}
+	
+	//게시물 삭제하기
+	public void deleteBoard(BoardVO vo) throws Exception{
+		boardMapper.deleteBoard(vo);
+	}
+
 }
