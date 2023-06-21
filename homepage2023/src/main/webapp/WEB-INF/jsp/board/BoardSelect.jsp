@@ -18,9 +18,24 @@
 	<link href="/asset/BBSTMP_0000000000001/style.css" rel="stylesheet" />
 	<!--공통 Style  -->
 	<link href="/asset/LYTTMP_0000000000000/style.css" rel="stylesheet" />
+	
+	<%--게시판타입 --%>	
+	<c:set var="boardType">
+	<c:choose>
+		<c:when test="${not empty searchVO.boardType}">
+			<c:out value="${searchVO.boardType}"></c:out>
+		</c:when>
+		<c:otherwise>
+			NORMAL
+		</c:otherwise>
+	</c:choose>
+	</c:set>	
+	
+	
 	<!-- 기본URL  -->
 	<c:url var="_BASE_PARAM" value="">	
-		<c:param name="menNo" value="50"/>
+		<c:param name="boardType" value="${boardType}"/>
+		<c:param name="pageIndex" value="${searchVO.pageIndex}"/>
 		<c:if test="${not empty searchVO.searchCondition}"><c:param name="searchCondition" value="${searchVO.searchCondition}"/></c:if>
 		<c:if test="${not empty searchVO.searchKeyword}"><c:param name="searchKeyword" value="${searchVO.searchKeyword}"/></c:if>
 	</c:url>
@@ -47,7 +62,7 @@
 					<dt>첨부파일목록</dt>
 					<dd>
 						<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-							<c:param name="param)atchFileId" value="${result.atchFileId}"/>
+							<c:param name="param_atchFileId" value="${result.atchFileId}"/>
 						</c:import>
 					</dd>
 				</dl>	

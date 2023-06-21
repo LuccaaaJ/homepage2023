@@ -23,10 +23,10 @@ public class FileMngUtil {
 	
 	public static final int BUFF_SIZE = 2048;
 	
-	@Resource(name = "propertyService")
-	protected EgovPropertyService propertyService;
+	@Resource(name = "propertiesService")
+    protected EgovPropertyService propertyService;
 	
-	@Resource(name = "egovfileIdFnrService")
+	 @Resource(name = "egovFileIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	//첨부파일에 대한 목록 정보를 취득한다.
@@ -35,7 +35,7 @@ public class FileMngUtil {
 	 * -List : java.util
 	 */
 	
-	public List<FileVO> sparseFileInf(Map<String, MultipartFile> files, String KeyStr, int fileKeyParam, String atchFileId, String storePath) throws Exception {
+	public List<FileVO> parseFileInf(Map<String, MultipartFile> files, String KeyStr, int fileKeyParam, String atchFileId, String storePath) throws Exception {
 		int fileKey = fileKeyParam;
 		
 		//파일저장경로
@@ -92,11 +92,12 @@ public class FileMngUtil {
 			//파일사이즈
 			long size =file.getSize();
 			
-			//파일저장
+			//파일저장 
 			if(!"".equals(orginFileName)) {
 				filePath = storePathString + File.separator + newName;
 				file.transferTo(new File(filePath));
 			}
+			//첨부파일업로드
 			fvo = new FileVO();
 			fvo.setFileExtsn(fileExt);
 			fvo.setFileStreCours(storePathString);
