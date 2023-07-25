@@ -2042,7 +2042,7 @@
     
     <bean name="joinStrategy"
         class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="ESNTL_ID" />
+        <property name="prefix" value="ESNTL_" />
         <property name="cipers" value="14" />
         <property name="fillChar" value="0" />
     </bean>     

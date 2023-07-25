@@ -68,7 +68,14 @@
 				
 				<tr>
 					<th><strong class="star">*</strong><label for="passwordHint">비밀번호 힌트</label></th>
-					<td><input type="text" id="passwordHint" name="passwordHint" required/></td>			
+					<td>
+						<select id="passwordHint" name="passwordHint" required>
+							<option value="1">취미 생활은?</option>
+							<option value="2">애완견 이름은?</option>
+							<option value="3">취직하고 싶은 곳은?</option>
+							<option value="4">여행가고 싶은 곳은?</option>
+						</select>
+					</td>			
 				</tr>
 				
 				<tr>
@@ -111,7 +118,7 @@ $(document).ready(function(){
 				success : function(data){
 					if(data.successYn == "Y"){
 						alert("사용가능한 ID입니다.");
-						$("idCheckAt").val("Y");
+						$("#idCheckAt").val("Y");
 					}else{
 						alert(data.message);
 						$("#idCheckAt").val("N");
@@ -136,11 +143,11 @@ $(document).ready(function(){
 //vaildation 체크
 function regist(){
 	//아이디 중복 검사 체크
-	/*
+	
 	if($("#idCheckAt").val() != "Y"){
 		alert("아이디 중복 검사를 해주세요.");
 		return false;
-	} else*/ if(!$("#emplyrId").val()){
+	} else if(!$("#emplyrId").val()){
 		alert("아이디를 입력해 주세요.");
 		return false;
 	} else if(!$("#userNm").val()){
@@ -165,12 +172,12 @@ function regist(){
 	
 	if($("#password").val()){
 		var pw = $("#password").val(),
-		message = "",
-		//대소문자, 특수문자, 숫자는 8자리 이상 정규형
-		passwordRules1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,30}$/,
-		//대소문자, 숫자는 10자리 이상 정규형
-		passwordRules2 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{10,30}$/,
-		result = false;
+	  	    message = "",
+	  	    //대소문자, 특수문자, 숫자는 8자리 이상 정규형
+	  	    passwordRules1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,30}$/,
+	  		//대소문자, 숫자는 10자리 이상 정규형
+	  	    passwordRules2 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{10,30}$/,
+	  	    result = false;
 		
 		if(pw.length < 10) {
 			if(!passwordRules1.test(pw)){
@@ -185,7 +192,7 @@ function regist(){
 			result = true;
 		}
 		if(message.length > 0) {
-			alert(massage + " 입력해주세요.");
+			alert(message + " 입력해주세요.");
 			return false;
 		}
 	}
